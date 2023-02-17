@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="user/base::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">View Contacts</title>
+
+</head>
+<body>
+
+<section>
+    <div>
+        <div class="table-wrapper">
+            <form>
+                <table class="fl-table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Work</th>
+                        <th>About</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr th:each="c : ${contact}">
+
+                        <td th:text="${c.cid}"></td>
+                        <td>
+                            <img class="profile-picture" src="" th:src="@{'/images/user-images/' + ${c.profile}}"
+                                 alt="Profile_image" align="left">
+
+                            <span th:text="${c.firstName} + ' ' + ${c.lastName}"></span>
+                        </td>
+                        <td th:text="${c.email}"></td>
+                        <td th:text="${c.phone}"></td>
+                        <td th:text="${c.work}"></td>
+                        <td th:text="${c.description}"></td>
+                        <td>
+                            <a class="button4" data-hr th:href="@{/user/view_page_update/{id}(id=${c.cid})}" style="background-color:#4ef18f">Update</a>
+                            <!--                        <a th:href="@{/view_page_delete/{id}(id=${c.cid})">Delete</a>-->
+                            <a class="button4" th:href="@{/user/view_page_delete/{id}(id=${c.cid})}" style="background-color:#f14e4e">Delete</a>
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+
+</section>
+
+</body>
+</html>
